@@ -1,4 +1,5 @@
-import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
+import { Text, View, StyleSheet, Image, ScrollView, Pressable } from "react-native";
+import { useState } from "react";
 
 const Logements = [{
   id:1,
@@ -23,17 +24,29 @@ const Logements = [{
 }];
 
 export default function Index() {
+  const [isFavorite, setFavorite] = useState([]);
+
+  const basculerfavs = (id) =>{
+    if(isFavorite.includes(id)){
+      setFavorite(isFavorite.filter((fav) => fav !== id))
+    }else{
+      setFavorite([...isFavorite, id])
+    }
+  }
+
   return (
     <ScrollView style={styles.container}> 
+        <Text style = {styles.titre}>Liste des Logement</Text>
         {Logements.map((logement) => (
-        <View key={logement.id} style={styles.card}>
+        <Pressable key={logement.id} onPress={()=>basculerfavs(logement.id)} style={styles.card}>
+          {isFavorite.includes(logement.id) && <Text>⭐</Text>}
           <Image source={{url : logement.image}} style={styles.img}/>
           <View style={styles.texte}>
-            <Text>Titre :{logement.titre}</Text>
+            <Text numberOfLines={2}>Titre :{logement.titre}</Text>
             <Text>Ville : {logement.ville}</Text>
           </View>
           <Text>Prix : {logement.prix}€</Text>
-        </View>
+        </Pressable>
       ))}
     </ScrollView>
   );
@@ -44,15 +57,25 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
+  titre: {
+  fontWeight: "bold",
+    textAlign: "center",
+    fontSize: 22,
+    marginBottom: 35,   
+  },
   card: {
+    backgroundColor: "lightgrey",
     flexDirection: "row",
     alignItems: "center",
     marginBottom : 25,
+    marginStart: 5,
+    marginEnd: 5,
+    borderRadius: 15,
     gap: 15,
   },
   texte: {
     flex: 1,
-    alignItems: "left",
+    alignItems: "start",
     justifyContent :"center",
   },
   img : {
