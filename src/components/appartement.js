@@ -1,29 +1,9 @@
 import { Text, View, StyleSheet, Image, ScrollView, Pressable } from "react-native";
 import { useState } from "react";
 
-const Logements = [{
-  id:1,
-  titre:"Logement",
-  ville:"Lennon",
-  prix:120,
-  image:"https://fastly.picsum.photos/id/134/800/450.jpg?hmac=QYVmlerxizcmKZDM8QrvkgPvGHvbIGkV5nJK9sLxN5U"
-},
-{
-  id:2,
-  titre:"second Logement pour l'exercice numéro 1 etape 1 je dois rajouter du texte",
-  ville:"Rennes",
-  prix:400,
-  image:"https://fastly.picsum.photos/id/134/800/450.jpg?hmac=QYVmlerxizcmKZDM8QrvkgPvGHvbIGkV5nJK9sLxN5U"
-},
-{
-  id:3,
-  titre:"Logement3",
-  ville:"Màlaga",
-  prix:600,
-  image:""
-}];
 
-export default function Index() {
+
+export default function Appartement({logement}) {
   const [isFavorite, setFavorite] = useState([]);
 
   const basculerfavs = (id) =>{
@@ -36,8 +16,6 @@ export default function Index() {
 
   return (
     <ScrollView style={styles.container}> 
-        <Text style = {styles.titre}>Liste des Logement</Text>
-        {Logements.map((logement) => (
         <Pressable key={logement.id} onPress={()=>basculerfavs(logement.id)} style={styles.card}>
           {isFavorite.includes(logement.id) && <Text>⭐</Text>}
           <Image source={{url : logement.image}} style={styles.img}/>
@@ -47,7 +25,6 @@ export default function Index() {
           </View>
           <Text>Prix : {logement.prix}€</Text>
         </Pressable>
-      ))}
     </ScrollView>
   );
 }
@@ -56,12 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-  },
-  titre: {
-  fontWeight: "bold",
-    textAlign: "center",
-    fontSize: 22,
-    marginBottom: 35,   
   },
   card: {
     backgroundColor: "lightgrey",
