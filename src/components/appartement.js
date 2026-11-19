@@ -1,29 +1,21 @@
-import { Text, View, StyleSheet, Image, ScrollView, Pressable } from "react-native";
-import { useState } from "react";
-import { useRouter } from "expo-router";
+import { Text, View, StyleSheet, Image, Pressable } from "react-native";
+import { useRouter, useSegments } from "expo-router";
+import { useFavoris } from "@/components/favorisContext";
 
-export default function Appartement({logement}) {
-  const [isFavorite, setFavorite] = useState([]);
+export default function Appartement({ logement }) {
+  const { isFavorite, basculerfavs } = useFavoris();
   const router = useRouter();
-
-  const basculerfavs = (id) =>{
-    if(isFavorite.includes(id)){
-      setFavorite(isFavorite.filter((fav) => fav !== id))
-    }else{
-      setFavorite([...isFavorite, id])
-    }
-  }
+  const segments = useSegments();
 
   const ouvrirFiche = () => {
-    router.push(`/logement/${logement.id}`);
+    const onglet = segments[1];
+    console.log("Ouverture de :", `/${onglet}/${logement.id}`); 
+    router.push(`/${onglet}/${logement.id}`);
   }
 
   return (
-    <Pressable
-      onPress={ouvrirFiche}
-      style={styles.card}
-    >
-      <Image source={{url : logement.image}} style={styles.img}/>
+    <Pressable onPress={ouvrirFiche} style={styles.card}>
+      <Image source={{uri : logement.image}} style={styles.img}/>
       <View style={styles.texte}>
         <Text numberOfLines={2}>Titre :{logement.titre}</Text>
         <Text>Ville : {logement.ville}</Text>
@@ -37,10 +29,6 @@ export default function Appartement({logement}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-  },
   card: {
     backgroundColor: "lightgrey",
     flexDirection: "row",
@@ -48,12 +36,13 @@ const styles = StyleSheet.create({
     marginBottom : 25,
     marginStart: 5,
     marginEnd: 5,
+    paddingEnd: 15,
     borderRadius: 15,
     gap: 15,
   },
   texte: {
     flex: 1,
-    alignItems: "start",
+    alignItems: "flex-start",
     justifyContent :"center",
   },
   img : {
@@ -65,5 +54,5 @@ const styles = StyleSheet.create({
   star: {
     fontSize: 28,
     color: "#f5b301",
-  }
+  },
 });

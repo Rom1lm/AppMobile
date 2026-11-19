@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Logements } from "./index";
+import { Logements } from "@/data/logements";
 
 export default function FicheLogement() {
   const { id } = useLocalSearchParams();

@@ -2,28 +2,7 @@ import { StyleSheet, Text, FlatList, TextInput, View, Pressable } from "react-na
 import { useState } from "react"; 
 import { SafeAreaView } from "react-native-safe-area-context";
 import Appartement from "@/components/appartement.js";
-
-export const Logements = [{
-  id:1,
-  titre:"Logement",
-  ville:"Lennon",
-  prix:120,
-  image:"https://fastly.picsum.photos/id/134/800/450.jpg?hmac=QYVmlerxizcmKZDM8QrvkgPvGHvbIGkV5nJK9sLxN5U"
-},
-{
-  id:2,
-  titre:"second Logement pour l'exercice numéro 1 etape 1 je dois rajouter du texte",
-  ville:"Rennes",
-  prix:400,
-  image:"https://fastly.picsum.photos/id/134/800/450.jpg?hmac=QYVmlerxizcmKZDM8QrvkgPvGHvbIGkV5nJK9sLxN5U"
-},
-{
-  id:3,
-  titre:"Logement3",
-  ville:"Màlaga",
-  prix:600,
-  image:""
-}];
+import { Logements } from "@/data/logements";
 
 export default function Logement() {
   const [ville, setVille] = useState("");  

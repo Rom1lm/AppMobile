@@ -6,7 +6,7 @@ export default function Profil() {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Pressable onPress={() => router.push("/profil/modale")}>
+      <Pressable onPress={() => router.push("/modale")}>
         <Text style={styles.bouton}>Ouvrir la modale</Text>
       </Pressable>
     </View>
