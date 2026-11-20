@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { FavorisProvider } from "@/components/favorisContext";
+import { FavorisProvider } from "@/context/favorisContext";
 
 export default function RootLayout() {
   return (

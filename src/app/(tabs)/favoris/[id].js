@@ -1,11 +1,11 @@
 import { Text, View, StyleSheet, Image, ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
-import { Logements } from "@/data/logements";
+import { useStore } from "@/store/store";
 
 export default function FicheFavori() {
   const { id } = useLocalSearchParams();
-
-  const logement = Logements.find((l) => String(l.id) === id);
+  const logements = useStore((state) => state.logements);
+  const logement = logements.find((l) => String(l.id) === id);
 
   if (!logement) {
     return (

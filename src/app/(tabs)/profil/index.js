@@ -1,5 +1,5 @@
 import { Text, StyleSheet, View, Pressable } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, Link } from "expo-router";
 
 export default function Profil() {
   const router = useRouter();
@@ -9,6 +9,9 @@ export default function Profil() {
       <Pressable onPress={() => router.push("/modale")}>
         <Text style={styles.bouton}>Ouvrir la modale</Text>
       </Pressable>
+      <Link href="/profil/recherche" style={styles.lien}>
+        Rechercher Rennes puis Nantes
+      </Link>
     </View>
   );
 }

@@ -1,3 +1,9 @@
+export function chargerLogements() {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(Logements), 800);
+  });
+}
+
 export const Logements = [{
   id:1,
   titre:"Logement",

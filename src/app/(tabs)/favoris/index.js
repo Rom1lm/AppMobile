@@ -1,13 +1,12 @@
 import { FlatList, Text, View, StyleSheet } from "react-native";
 import Appartement from "@/components/appartement";
-import { useFavoris } from "@/components/favorisContext";
-import { Logements } from "@/data/logements";
+import { useStore } from "@/store/store";
 
 export default function Favoris() {
-  const { isFavorite } = useFavoris();
+  const logements = useStore((state) => state.logements);
+  const isFavorite = useStore((state) => state.isFavorite);
 
-  // Seulement les logements marqués
-  const logementsFavoris = Logements.filter((l) => isFavorite.includes(l.id));
+  const logementsFavoris = logements.filter((l) => isFavorite.includes(l.id));
 
   return (
     <FlatList

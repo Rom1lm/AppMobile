@@ -1,9 +1,8 @@
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
 import { useRouter, useSegments } from "expo-router";
-import { useFavoris } from "@/components/favorisContext";
+import { useStore } from "@/store/store";
 
 export default function Appartement({ logement }) {
-  const { isFavorite, basculerfavs } = useFavoris();
   const router = useRouter();
   const segments = useSegments();
 
@@ -12,6 +11,9 @@ export default function Appartement({ logement }) {
     console.log("Ouverture de :", `/${onglet}/${logement.id}`); 
     router.push(`/${onglet}/${logement.id}`);
   }
+
+  const isFavorite = useStore((state) => state.isFavorite);
+  const basculerfavs = useStore((state) => state.basculerfavs);
 
   return (
     <Pressable onPress={ouvrirFiche} style={styles.card}>
